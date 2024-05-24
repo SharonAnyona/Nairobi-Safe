@@ -4,7 +4,7 @@ import React from 'react'
 const CleaningScreen = () => {
   return (
     <View>
-      <Text>CleaningScreen</Text>
+      <Text>Cleaning Screen</Text>
     </View>
   )
 }
