@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View,Image , SafeAreaView} from 'react-native';
-import tw from 'tailwind-react-native-classnames';
+import tw from 'twrnc';
 import NavOptions from '../components/NavOptions';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import {GOOGLE_MAPS_APIKEY} from "@env";
 import { useDispatch } from 'react-redux';
 import {setDestination, setOrigin} from "../slices/navSlice";
+
 
 const Homescreen = () => {
   const dispatch =useDispatch();
@@ -19,7 +20,7 @@ const Homescreen = () => {
                  height: 80, 
                  resizeMode: "contain",
                 }} 
-            source = {require("../assets/images/logo-.png")}           
+            source = {require("../assets/images/logo1.png")}           
         />
       <Text style={[tw `ml-0 p-3`, { fontWeight: 'bold', fontSize: 12 }]}>NairobiSafe</Text>
 
