@@ -4,7 +4,7 @@ module.exports = function(api) {
     presets: ['babel-preset-expo'],
     plugins:[
       [
-        "module:react-native-dotenv",
+        "babel-plugin-dotenv-import",
 
       {
         moduleName: "@env",
