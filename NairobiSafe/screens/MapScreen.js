@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import tw from "tailwind-react-native-classnames";
+import tw from 'twrnc';
 import Map from '../components/Map';
 import MapView from 'react-native-maps';
 import {createStacknavigator} from "@react-navigation/stack"
