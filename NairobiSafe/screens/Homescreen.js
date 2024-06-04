@@ -3,9 +3,16 @@ import { StyleSheet, Text, View,Image , SafeAreaView} from 'react-native';
 import tw from 'twrnc';
 import NavOptions from '../components/NavOptions';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import {GOOGLE_MAPS_APIKEY} from "@env";
+// import {GOOGLE_MAPS_APIKEY} from "./config.js";
+import { GOOGLE_MAPS_APIKEY } from '@env';
 import { useDispatch } from 'react-redux';
 import {setDestination, setOrigin} from "../slices/navSlice";
+import env from 'react-native-dotenv';
+import Config from 'react-native-config';
+
+
+
+console.log(Config.GOOGLE_MAPS_APIKEY);
 
 const Homescreen = () => {
   const dispatch =useDispatch();
@@ -78,3 +85,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
+console.log(GOOGLE_MAPS_APIKEY);
