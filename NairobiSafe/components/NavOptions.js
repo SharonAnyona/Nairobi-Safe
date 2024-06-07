@@ -10,14 +10,14 @@ import { selectOrigin } from '../slices/navSlice';
 const data = [
     {
     id: "123",
-    title: "Order Relocation Track",
-    image:"../assets/images/track1.jpg",
+    title: "Order Relocation Truck",
+    image:"./assets/images/track1.jpg",
     screen:"MapScreen",
     },
     {
     id: "124",
     title: "Book Cleaning Services",
-    image: "../assets/images/cleaner.jpg",
+    image: "./assets/images/cleaner.jpg",
     screen:"CleaningScreen",
     },
     {

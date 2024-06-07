@@ -1,89 +1,82 @@
 import React from 'react';
-import { StyleSheet, Text, View,Image , SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView } from 'react-native';
 import tw from 'twrnc';
 import NavOptions from '../components/NavOptions';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-// import {GOOGLE_MAPS_APIKEY} from "./config.js";
 import { GOOGLE_MAPS_APIKEY } from '@env';
+import { setDestination, setOrigin } from '../slices/navSlice';
 import { useDispatch } from 'react-redux';
-import {setDestination, setOrigin} from "../slices/navSlice";
-import env from 'react-native-dotenv';
-import Config from 'react-native-config';
-
-
-
-console.log(Config.GOOGLE_MAPS_APIKEY);
-
+import NavFavourites from '../components/NavFavourites';
 
 const Homescreen = () => {
-  const dispatch =useDispatch();
+  const dispatch = useDispatch();
+  
   return (
-
-    <SafeAreaView style={tw `bg-white h-full`}>
-      <View style={tw `pl-0 pt-5 `}>
+    <SafeAreaView style={tw`bg-white h-full`}>
+      <View style={tw`p-5`}>
         <Image
-              style={{
-                width:80,
-                 height: 80, 
-                 resizeMode: "contain",
-                }} 
-            source = {require("../assets/images/logo1.png")}           
+          style={styles.logo}
+          source={require('../assets/images/logo1.png')}
         />
-      <Text style={[tw `ml-0 p-3`, { fontWeight: 'bold', fontSize: 12 }]}>NairobiSafe</Text>
-
-    <GooglePlacesAutocomplete
-    placeholder="where from?"
-    styles={{
-        container: {
-          flex: 0,
-
-        },
-        textInput:{
-          fontSize: 18,
-        }
-      }}
-      
-      onPress={(data, details = null) => {
-      dispatch(
-        setOrigin({
-          location: details.geometry.location,
-          description: data.description,
-              
-      })
-    );
-       dispatch(setDestination(null));
-      }}
-
-      fetchDetails= {true}
-      returnKeyType={"search"}
-      enablePoweredByContainer={false}
-      minLength={2}
-      query={{
-        key: GOOGLE_MAPS_APIKEY,
+        <Text style={styles.title}>NairobiSafe</Text>
         
-        language: 'en',
-      }}
-      
+        <GooglePlacesAutocomplete
+          placeholder="Where from?"
+          styles={autoCompleteStyles}
+          onPress={(data, details = null) => {
+            dispatch(setOrigin({
+              location: details.geometry.location,
+              description: data.description,
+            }));
+            dispatch(setDestination(null));
+          }}
+          fetchDetails={true}
+          returnKeyType={"search"}
+          enablePoweredByContainer={false}
+          minLength={2}
+          query={{
+            key: GOOGLE_MAPS_APIKEY,
+            language: 'en',
+          }}
+          nearbyPlacesAPI="GooglePlacesSearch"
+          debounce={400}
+        />
 
-      nearbyPlacesAPI="GooglePlacesSearch"
-      debounce={400}
-
-      />
-
-      <NavOptions/>
+        <NavOptions />
+        <NavFavourites />
       </View>
+      
     </SafeAreaView>
   );
 };
 
-export default Homescreen
+const autoCompleteStyles = {
+  container: {
+    flex: 0,
+    marginBottom: 20,
+  },
+  textInput: {
+    fontSize: 18,
+    borderRadius: 5,
+    padding: 10,
+    backgroundColor: '#F0F0F0',
+  },
+};
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#22eeff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+  logo: {
+    width: 100,
+    height: 100,
+    resizeMode: 'contain',
+    alignSelf: 'center',
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 24,
+    textAlign: 'center',
+    marginVertical: 10,
+  },
 });
-console.log(GOOGLE_MAPS_APIKEY);
+
+
+export default Homescreen;

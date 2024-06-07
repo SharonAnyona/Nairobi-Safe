@@ -3,11 +3,13 @@ import React from 'react';
 import tw from 'twrnc';
 import Map from '../components/Map';
 import MapView from 'react-native-maps';
-import {createStacknavigator} from "@react-navigation/stack"
-import navigateCard from '../components/navigateCard';
-import riderOptionsCard from '../components/riderOptionsCard';
+import NavigateCard from '../components/NavigateCard';
+import riderOptionsCard from '../components/RiderOptionsCard';
+import { createStackNavigator } from '@react-navigation/stack';
+
+
 const MapScreen = () => {
-  const Stack = createStacknavigator();
+const Stack = createStackNavigator();
 
   return (
     <View>
@@ -18,16 +20,16 @@ const MapScreen = () => {
 
       <View style = {tw`h-1/2`}>
         <Stack.Navigator>
-          <StackScreen
-            name="navigateCard"
-            component={navigateCard}
+          <Stack.Screen
+            name="NavigateCard"
+            component={NavigateCard}
             options={{
               headerShow: false,
             }}
           />
-           <StackScreen
+           <Stack.Screen
             name="riderOptionsCard"
-            component={navigateCard}
+            component={NavigateCard}
             options={{
               headerShow: false,
             }}
